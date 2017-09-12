@@ -27,6 +27,8 @@ limitations under the License.
 
   // I'm a new service worker
 
-  // TODO - 4: Add fetch listener
+  self.addEventListener('fetch', function(event) {
+    console.log('Fetching:', event.request.url);
+  });
 
 })();
