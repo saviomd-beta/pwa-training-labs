@@ -1,0 +1,8 @@
+{
+  "name": "pwa-trainig-labs",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "http-server -p 8080 -a localhost -c 0"
+  }
+}
