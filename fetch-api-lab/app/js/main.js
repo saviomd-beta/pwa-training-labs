@@ -31,12 +31,16 @@ var app = (function() {
 
   function fetchJSON() {
     fetch('examples/animals.json')
+    .then(validateResponse)
     .then(logResult)
     .catch(logError);
   }
 
   function validateResponse(response) {
-    // TODO 2.3
+    if (!response.ok) {
+      throw Error(response.statusText);
+    }
+    return response;
   }
 
   function readResponseAsJSON(response) {
