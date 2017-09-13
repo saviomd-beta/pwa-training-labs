@@ -56,7 +56,9 @@ limitations under the License.
 
         .then(function(response) {
 
-          // TODO 5 - Respond with custom 404 page
+          if (response.status === 404) {
+            return caches.match('pages/404.html');
+          }
 
           return caches.open(staticCacheName).then(function(cache) {
             if (event.request.url.indexOf('test') < 0) {
