@@ -18,7 +18,18 @@ limitations under the License.
 var app = (function() {
 
   function getImageName(country) {
-    // TODO 2.1 - create a promise
+    country = country.toLowerCase();
+    var promiseOfImageName = new Promise(function(resolve, reject) {
+      setTimeout(function() {
+        if (country === 'spain' || country === 'chile' || country === 'peru') {
+          resolve(country + '.png');
+        } else {
+          reject(Error('Didn\'t receive a valid country name!'));
+        }
+      }, 1000);
+    });
+    console.log(promiseOfImageName);
+    return promiseOfImageName;
   }
 
   function isSpain(country) {
@@ -26,7 +37,9 @@ var app = (function() {
   }
 
   function flagChain(country) {
-    // TODO 2.2 - use the promise
+    return getImageName(country)
+    .then(logSuccess)
+    .catch(logError);
   }
 
   function spainTest(country) {
