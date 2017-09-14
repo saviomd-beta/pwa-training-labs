@@ -38,7 +38,10 @@ var app = (function() {
 
   function flagChain(country) {
     return getImageName(country)
-    .then(logSuccess)
+    .catch(fallbackName)
+    .then(fetchFlag)
+    .then(processFlag)
+    .then(appendFlag)
     .catch(logError);
   }
 
