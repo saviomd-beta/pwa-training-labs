@@ -1,42 +1,40 @@
 /* main.css */
 
-/*
-.container {
+.no-flexbox .container {
   background: #eee;
   overflow: auto;
 }
 
-.container .col {
+.no-flexbox .container .col {
     width: 27%;
     padding: 30px 3.15% 0;
     float: left;
 }
 
 @media screen and (max-width: 48rem) {
-  .container .col {
+  .no-flexbox .container .col {
     width: 95%;
   }
 }
-*/
 
-.container {
-  display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6 */
-  display: -ms-flexbox;  /* TWEENER - IE 10 */
-  display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
+.flexbox .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   background: #eee;
   overflow: auto;
 }
 
-.container .col {
+.flexbox .container .col {
   flex: 1;
   padding: 1rem;
 }
 
 @media screen and (max-width: 48rem) {
-  .container {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    flex-flow: column;
-  }
+    .flexbox .container {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        flex-flow: column;
+    }
 }
