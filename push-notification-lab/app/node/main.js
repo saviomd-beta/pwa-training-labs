@@ -14,4 +14,24 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-// TODO 3.8 - push a message using the web push library
+var webPush = require('web-push');
+
+var pushSubscription = {"endpoint":"https://android.googleapis.com/gcm/send/fwB9QtXKTj4:APA91bEuq46_kscbTleInlQXBJ6pRg3I4zEwpVIRU1eVlz96mSFB0FpVOj-hzzQBOeNvQ6UHi4SuVNC4TbZz8oE4mEcxwqS9-20DYg6T5f3_JPddbCjgJoJRsaliDKoz3NGpR2wtfNIC","expirationTime":null,"keys":{"p256dh":"BFgcWXpvZ5mWbzwn3MVQifoWE9OmDfSKALpb3ZXhJaC5WoVsQbkFA-4hhF7bc2iBENwTPiIyTyPbMS0J-HvJI14=","auth":"fKvWxuRAx_u_1UyOPZruww=="}};
+
+// TODO 4.3a - include VAPID keys
+
+var payload = 'Here is a payload!';
+
+var options = {
+  gcmAPIKey: 'AAAACB4sFbg:APA91bHP-RDspvcYjElO0V5DeeqINkYjVr6sE3FV-JizdI1_bHsN1DNcQPh88njNjEWJb8dAVqzkrYyZ7sPjXjhbgXU3lou5aEtW4PTrjZwxNIPmv94_NmEbI6FwHka3yyWnBRmnNQ4u',
+  TTL: 60,
+
+  // TODO 4.3b - add VAPID details
+
+};
+
+webPush.sendNotification(
+  pushSubscription,
+  payload,
+  options
+);
