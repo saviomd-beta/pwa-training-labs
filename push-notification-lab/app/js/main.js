@@ -50,9 +50,9 @@ var app = (function() {
               icon: 'images/checkmark.png'},
             {action: 'close', title: 'Close the notification',
               icon: 'images/xmark.png'},
-          ]
+          ],
 
-          // TODO 5.1 - add a tag to the notification
+          tag: 'id1'
 
         };
 

@@ -31,11 +31,28 @@ limitations under the License.
     if (action === 'close') {
       notification.close();
     } else {
-      clients.openWindow('samples/page' + primaryKey + '.html');
-      notification.close();
+      e.waitUntil(
+        clients.matchAll().then(function(clis) {
+          var client = clis.find(function(c) {
+            return c.visibilityState === 'visible';
+          });
+          if (client !== undefined) {
+            client.navigate('samples/page' + primaryKey + '.html');
+            client.focus();
+          } else {
+            // there are no visible windows. Open one.
+            clients.openWindow('samples/page' + primaryKey + '.html');
+            notification.close();
+          }
+        })
+      );
     }
 
-    // TODO 5.3 - close all notifications when one is clicked
+    self.registration.getNotifications().then(function(notifications) {
+      notifications.forEach(function(notification) {
+        notification.close();
+      });
+    });
 
   });
 
@@ -65,7 +82,16 @@ limitations under the License.
     };
 
     e.waitUntil(
-      self.registration.showNotification('Push Notification', options)
+      clients.matchAll().then(function(c) {
+        console.log(c);
+        if (c.length === 0) {
+          // Show notification
+          self.registration.showNotification('title', options);
+        } else {
+          // Send a message to the page to update the UI
+          console.log('Application is already open!');
+        }
+      })
     );
   });
 
