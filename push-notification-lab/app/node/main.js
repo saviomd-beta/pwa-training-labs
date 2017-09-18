@@ -16,17 +16,22 @@ limitations under the License.
 
 var webPush = require('web-push');
 
-var pushSubscription = {"endpoint":"https://android.googleapis.com/gcm/send/fwB9QtXKTj4:APA91bEuq46_kscbTleInlQXBJ6pRg3I4zEwpVIRU1eVlz96mSFB0FpVOj-hzzQBOeNvQ6UHi4SuVNC4TbZz8oE4mEcxwqS9-20DYg6T5f3_JPddbCjgJoJRsaliDKoz3NGpR2wtfNIC","expirationTime":null,"keys":{"p256dh":"BFgcWXpvZ5mWbzwn3MVQifoWE9OmDfSKALpb3ZXhJaC5WoVsQbkFA-4hhF7bc2iBENwTPiIyTyPbMS0J-HvJI14=","auth":"fKvWxuRAx_u_1UyOPZruww=="}};
+var pushSubscription = {"endpoint":"https://fcm.googleapis.com/fcm/send/dT9VvSk8wn0:APA91bEwJT4iDC0BSLxQ5zBNA3PuV7BBBJPEDrxuNiuxPQrxEA4sru6E-AE56E_U5R_TsOIEdxf8EnngNI8g85khK1qkQT2EW2YZ1Ibm6sCCA-Uu5kcww8dtX4-ORBRCF7eNT4oc2jOg","expirationTime":null,"keys":{"p256dh":"BMKibYaiYJDWeWuXzEv9hh_bhcLeR-uGZKZiCV6I2EI2xHkM1ecD4X8pe9BXzsDZGjstPCy5o5jcc8-LCF_bmU8=","auth":"xXHnVSkIsQMJT0ev-cULkQ=="}};
 
-// TODO 4.3a - include VAPID keys
+var vapidPublicKey = 'BKtDY2Cfol1opIDS3ghaSvQVnUYUVic5XWH82lCe1mimOrXUS3LKAxTEhLfUK3UYjEzdWJbyvDh9P2oU9cPJGN0';
+var vapidPrivateKey = 'pZOGzLSrke-cFLs7E3PSFf9FQ4yuCUnPMxji7FleApo';
 
 var payload = 'Here is a payload!';
 
 var options = {
-  gcmAPIKey: 'AAAACB4sFbg:APA91bHP-RDspvcYjElO0V5DeeqINkYjVr6sE3FV-JizdI1_bHsN1DNcQPh88njNjEWJb8dAVqzkrYyZ7sPjXjhbgXU3lou5aEtW4PTrjZwxNIPmv94_NmEbI6FwHka3yyWnBRmnNQ4u',
+  // gcmAPIKey: 'AAAACB4sFbg:APA91bHP-RDspvcYjElO0V5DeeqINkYjVr6sE3FV-JizdI1_bHsN1DNcQPh88njNjEWJb8dAVqzkrYyZ7sPjXjhbgXU3lou5aEtW4PTrjZwxNIPmv94_NmEbI6FwHka3yyWnBRmnNQ4u',
   TTL: 60,
 
-  // TODO 4.3b - add VAPID details
+  vapidDetails: {
+    subject: 'mailto: teste@teste.com',
+    publicKey: vapidPublicKey,
+    privateKey: vapidPrivateKey
+  }
 
 };
 

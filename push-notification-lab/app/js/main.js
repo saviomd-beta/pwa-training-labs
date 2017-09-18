@@ -90,20 +90,18 @@ var app = (function() {
 
   }
 
-  // TODO 4.2a - add VAPID public key
+  var applicationServerPublicKey = 'BKtDY2Cfol1opIDS3ghaSvQVnUYUVic5XWH82lCe1mimOrXUS3LKAxTEhLfUK3UYjEzdWJbyvDh9P2oU9cPJGN0';
 
   function subscribeUser() {
-
+    var applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
     swRegistration.pushManager.subscribe({
-      userVisibleOnly: true
+      userVisibleOnly: true,
+      applicationServerKey: applicationServerKey
     })
     .then(function(subscription) {
       console.log('User is subscribed:', subscription);
-
       updateSubscriptionOnServer(subscription);
-
       isSubscribed = true;
-
       updateBtn();
     })
     .catch(function(err) {
@@ -114,7 +112,6 @@ var app = (function() {
       }
       updateBtn();
     });
-
   }
 
   function unsubscribeUser() {
