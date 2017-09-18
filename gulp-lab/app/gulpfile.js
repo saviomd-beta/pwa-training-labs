@@ -1,3 +1,4 @@
+var autoprefixer = require('gulp-autoprefixer');
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 // TODO 6.3a - include browserSync
@@ -5,6 +6,12 @@ var uglify = require('gulp-uglify');
 gulp.task('minify', function() {
   gulp.src('js/main.js')
   .pipe(uglify())
+  .pipe(gulp.dest('build'));
+});
+
+gulp.task('processCSS', function() {
+  gulp.src('styles/main.css')
+  .pipe(autoprefixer())
   .pipe(gulp.dest('build'));
 });
 
