@@ -51,7 +51,12 @@ limitations under the License.
   purchaseButton.onclick = markPurchase;
 
   function markPurchase() {
-    // TODO 6: Send a custom event
+    ga('send', {
+      hitType: 'event',
+      eventCategory: 'products',
+      eventAction: 'purchase',
+      eventLabel: 'Summer products launch'
+    });
   }
 
   // Subscribe functionality
