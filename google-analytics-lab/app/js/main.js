@@ -73,7 +73,7 @@ limitations under the License.
           reg.pushManager.subscribe({userVisibleOnly: true})
           .then(function(subscription) {
             console.log('Subscribed to push,', subscription);
-            // TODO 7.2a - Subscribe event
+            ga('send', 'event', 'push', 'subscribe', 'success');
           })
           .catch(function(error) {
             if (Notification.permission === 'denied') {
@@ -107,7 +107,7 @@ limitations under the License.
           sub.unsubscribe()
           .then(function() {
             console.log('Unsubscribed!');
-            // TODO 7.2b - Unsubscribe event
+            ga('send', 'event', 'push', 'unsubscribe', 'success');
           });
         } else {
           console.log('Not currently subscribed');
